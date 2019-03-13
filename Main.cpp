@@ -32,18 +32,17 @@ int main(){
         exit(1);
     }
 
-    //string newName;
+    string newName;
 
-    inStream.get(next);
-    while(!inStream.eof){
-        // cout.put << next;
-        // inStream.get(next);
-        // outStream >> next;
-        // while("#N#"){
-        //     cout << "Input a new name for the letter";
-        //     cin >> newName;
-        //     outStream.put(newName);
-        // }    
+    //inStream.get(next);
+    while(!inStream.eof()){
+        inStream.get(next);
+        outStream.put(next);
+        if(next == '#'){
+            cout << "Input a new name for the letter";
+            cin >> newName;
+            outStream << newName;
+        }    
     }
 
 
