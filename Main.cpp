@@ -15,11 +15,25 @@ using namespace std;
 //      If this is being done as a class assignment, obtain the file names from your instructor.)
 // Harder version (using material in the optional section “File Names as Input”): Allow the string #N# to occur any number of times in the file. In this case, the name is stored in two string variables. For this version, assume that there is a first name and last name but no middle names or initials.
 
+void addName(ifstream& fin, ofstream& fout){
+    string newName;
+    char next;
+    while(!fin.eof()){
+        fin.get(next);
+        fout.put(next);
+        if(next == '#'){
+            fin.putback(next);
+            cout << "Input a new name for the letter";
+            cin >> newName;
+            fout << newName;   
+        }
+    }
+}
+
 int main(){
     ifstream inStream;
     ofstream outStream;
-    char next;
-
+    
     inStream.open("junk.txt");
     if (inStream.fail()){
         cout << "Input file opening failed.\n";
@@ -31,21 +45,9 @@ int main(){
         cout << "Output file opening failed.\n";
         exit(1);
     }
-
-    string newName;
-
-    //inStream.get(next);
-    while(!inStream.eof()){
-        inStream.get(next);
-        outStream.put(next);
-        if(next == '#'){
-            cout << "Input a new name for the letter";
-            cin >> newName;
-            outStream << newName;
-        }    
-    }
-
-
+    
+    addName(inStream, outStream);
+    
     inStream.close();
     outStream.close();
 
